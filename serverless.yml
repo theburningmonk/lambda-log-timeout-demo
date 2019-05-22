@@ -3,6 +3,9 @@ service: lambda-log-timeout-demo
 provider:
   name: aws
   runtime: nodejs8.10
+  tracing:
+    lambda: true
+    apiGateway: true
 
 functions:
   hello:
