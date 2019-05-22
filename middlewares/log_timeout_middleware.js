@@ -7,6 +7,7 @@ module.exports = () => {
   return {
     before: (handler, next) => {
       const timeLeft = handler.context.getRemainingTimeInMillis()
+      handler.context.callbackWaitsForEmptyEventLoop = false
       isTimedOut = undefined
 
       Promise.delay(timeLeft - 10).then(() => {
