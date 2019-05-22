@@ -1,0 +1,28 @@
+{
+  "name": "lambda-log-timeout-demo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Demo project to show you how to trap and log Lambda timeouts",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theburningmonk/lambda-log-timeout-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theburningmonk/lambda-log-timeout-demo/issues"
+  },
+  "homepage": "https://github.com/theburningmonk/lambda-log-timeout-demo#readme",
+  "dependencies": {
+    "bluebird": "^3.5.4",
+    "middy": "^0.27.0"
+  },
+  "devDependencies": {
+    "serverless": "^1.43.0"
+  }
+}

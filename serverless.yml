@@ -1,0 +1,14 @@
+service: lambda-log-timeout-demo
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+functions:
+  hello:
+    handler: handler.hello
+    timeout: 1
+    events:
+      - http:
+          path: /
+          method: get
