@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/theburningmonk/lambda-log-timeout-demo#readme",
   "dependencies": {
+    "@perform/lambda-powertools-logger": "^1.1.7",
     "bluebird": "^3.5.4",
     "middy": "^0.27.0"
   },

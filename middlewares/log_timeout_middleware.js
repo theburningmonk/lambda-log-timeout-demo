@@ -1,4 +1,5 @@
 const Promise = require('bluebird')
+const Log = require('@perform/lambda-powertools-logger')
 
 module.exports = () => {
   let isTimedOut = undefined
@@ -10,7 +11,9 @@ module.exports = () => {
 
       Promise.delay(timeLeft - 10).then(() => {
         if (isTimedOut !== false) {
-          console.log('function timed out')
+          const awsRequestId = handler.context.awsRequestId
+          const invocationEvent = JSON.stringify(handler.event)
+          Log.error('invocation timed out', { awsRequestId, invocationEvent })
         }
       })
   
