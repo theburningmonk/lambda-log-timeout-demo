@@ -3,6 +3,14 @@ const Log = require('@perform/lambda-powertools-logger')
 
 module.exports = () => {
   let isTimedOut = undefined
+  let promise = undefined
+
+  const resetPromise = () => {
+    if (promise) {
+      promise.cancel()
+      promise = undefined
+    }
+  }
   
   return {
     before: (handler, next) => {
@@ -10,7 +18,7 @@ module.exports = () => {
       handler.context.callbackWaitsForEmptyEventLoop = false
       isTimedOut = undefined
 
-      Promise.delay(timeLeft - 10).then(() => {
+      promise = Promise.delay(timeLeft - 10).then(() => {
         if (isTimedOut !== false) {
           const awsRequestId = handler.context.awsRequestId
           const invocationEvent = JSON.stringify(handler.event)
@@ -22,10 +30,12 @@ module.exports = () => {
     },
     after: (handler, next) => {
       isTimedOut = false
+      resetPromise()
       next()
     },
     onError: (handler, next) => {
       isTimedOut = false
+      resetPromise()
       next(handler.error)
     }
   }
